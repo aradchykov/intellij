@@ -99,14 +99,14 @@ public class JavaSourceFolderProvider implements SourceFolderProvider {
       sourceFolder =
           contentEntry.addSourceFolder(UrlUtil.pathToUrl(file.getPath()), resourceRootType);
     } else {
-      File file1 = file.listFiles()[0].listFiles()[0].listFiles()[0];
+//      File file1 = file.listFiles()[0].listFiles()[0].listFiles()[0];
 
 //      JpsModuleSourceRoot moduleSourceRoot = JpsElementFactory.getInstance().createModuleSourceRoot(UrlUtil.pathToUrl(file.getPath()), JavaSourceRootType.TEST_SOURCE, JavaSourceRootType.TEST_SOURCE.createDefaultProperties());
 //      SourceFolderImpl sourceFolder1 = new SourceFolderImpl(moduleSourceRoot, ((ContentEntryImpl) contentEntry));
 
-      VirtualFile parent = VirtualFilePointerManager.getInstance().create(UrlUtil.pathToUrl(file.listFiles()[0].listFiles()[0].getPath()), ((ContentEntryImpl) contentEntry), null).getFile();
-      VirtualFile[] childrens = { VirtualFilePointerManager.getInstance().create(UrlUtil.pathToUrl(file1.getPath()), ((ContentEntryImpl) contentEntry), null).getFile() };
-      Huy huy = new Huy(parent, childrens);
+//      VirtualFile parent = VirtualFilePointerManager.getInstance().create(UrlUtil.pathToUrl(file.listFiles()[0].listFiles()[0].getPath()), ((ContentEntryImpl) contentEntry), null).getFile();
+//      VirtualFile[] childrens = { VirtualFilePointerManager.getInstance().create(UrlUtil.pathToUrl(file1.getPath()), ((ContentEntryImpl) contentEntry), null).getFile() };
+//      Huy huy = new Huy(parent, childrens);
 //    File a = new File(file.getPath() + "/com/test/test11");
 
 //      sourceFolder = contentEntry.addSourceFolder(huy, isTestSource);
