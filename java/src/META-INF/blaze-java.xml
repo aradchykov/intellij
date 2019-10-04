@@ -24,4 +24,8 @@
     <TargetKindProvider implementation="com.google.idea.blaze.java.JavaBlazeRules"/>
     <TargetKindProvider implementation="com.google.idea.blaze.java.AndroidBlazeRules"/>
   </extensions>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <testSourcesFilter implementation="com.google.idea.blaze.java.sync.projectstructure.MyAwesomeExt"/>
+  </extensions>
 </idea-plugin>

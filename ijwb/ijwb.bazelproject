@@ -1,8 +1,17 @@
 directories:
-  .
-  -aswb
-  -clwb
-  -cpp
+  # Add the directories you want added as source here
+  # By default, we've added your entire workspace ('.')
+  .ijwb
+  base
+  build_defs
+  common
+  ijwb
+  intellij_platform_sdk
+  java
+  kotlin
+  plugin_dev
+  scala
+  skylark
 
 targets:
   //ijwb:ijwb_bazel_dev
@@ -13,7 +22,7 @@ targets:
 workspace_type: intellij_plugin
 
 build_flags:
-  --define=ij_product=intellij-latest
+  --define=ij_product=intellij-2019.2
 
 test_sources:
   */tests/unittests*
