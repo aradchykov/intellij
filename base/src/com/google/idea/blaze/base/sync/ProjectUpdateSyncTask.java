@@ -71,6 +71,7 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.roots.ContentEntry;
 import com.intellij.openapi.roots.ModifiableRootModel;
 import com.intellij.openapi.roots.ex.ProjectRootManagerEx;
+import com.intellij.openapi.util.Key;
 import com.intellij.openapi.util.io.FileUtil;
 import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VfsUtil;
@@ -433,6 +434,7 @@ final class ProjectUpdateSyncTask {
     createProjectDataDirectoryModule(
         moduleEditor, new File(importSettings.getProjectDataDirectory()), workspaceModuleType);
 
+    project.putUserData(Key.create("HAS_TEST_ROOTS"), true);
     moduleEditor.commitWithGc(context);
   }
 

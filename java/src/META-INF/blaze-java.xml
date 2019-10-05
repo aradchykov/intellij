@@ -27,5 +27,10 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <testSourcesFilter implementation="com.google.idea.blaze.java.sync.projectstructure.MyAwesomeExt"/>
+
+    <applicationService serviceInterface="com.intellij.psi.search.PredefinedSearchScopeProvider"
+                        serviceImplementation="com.google.idea.blaze.java.sync.projectstructure.MyAwesomeGlovalSearchScopesProvider"
+                        overrides="true"/>
+
   </extensions>
 </idea-plugin>
