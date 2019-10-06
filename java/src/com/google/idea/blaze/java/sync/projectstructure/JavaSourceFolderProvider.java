@@ -18,7 +18,6 @@ package com.google.idea.blaze.java.sync.projectstructure;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableMap;
-import com.google.idea.blaze.base.io.VfsUtils;
 import com.google.idea.blaze.base.sync.SourceFolderProvider;
 import com.google.idea.blaze.base.util.UrlUtil;
 import com.google.idea.blaze.java.sync.model.BlazeContentEntry;
@@ -26,28 +25,15 @@ import com.google.idea.blaze.java.sync.model.BlazeJavaSyncData;
 import com.google.idea.blaze.java.sync.model.BlazeSourceDirectory;
 import com.intellij.openapi.roots.ContentEntry;
 import com.intellij.openapi.roots.SourceFolder;
-import com.intellij.openapi.roots.impl.ContentEntryImpl;
-import com.intellij.openapi.roots.impl.SourceFolderImpl;
 import com.intellij.openapi.util.io.FileUtil;
-import com.intellij.openapi.vfs.*;
-
+import com.intellij.openapi.vfs.VirtualFileManager;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.Nullable;
-
-import com.intellij.openapi.vfs.newvfs.VfsImplUtil;
-import com.intellij.openapi.vfs.pointers.VirtualFilePointerManager;
-import com.intellij.project.model.impl.module.content.JpsContentEntry;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.jps.model.JpsElement;
-import org.jetbrains.jps.model.JpsElementFactory;
 import org.jetbrains.jps.model.java.JavaResourceRootType;
 import org.jetbrains.jps.model.java.JavaSourceRootProperties;
-import org.jetbrains.jps.model.java.JavaSourceRootType;
 import org.jetbrains.jps.model.module.JpsModuleSourceRoot;
 
 /** Edits source folders in IntelliJ content entries */
@@ -108,9 +94,7 @@ public class JavaSourceFolderProvider implements SourceFolderProvider {
       ((JavaSourceRootProperties) properties).setForGeneratedSources(isGenerated(parentFolder));
     }
     return sourceFolder;
-
   }
-
 
   private static String derivePackagePrefix(File file, SourceFolder parentFolder) {
     String parentPackagePrefix = parentFolder.getPackagePrefix();
