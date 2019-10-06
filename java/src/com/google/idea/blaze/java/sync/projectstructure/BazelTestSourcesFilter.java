@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-public class MyAwesomeExt extends TestSourcesFilter {
+public class BazelTestSourcesFilter extends TestSourcesFilter {
 
 	@Override
 	public boolean isTestSource(@NotNull VirtualFile file, @NotNull Project project) {

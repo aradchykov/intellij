@@ -14,7 +14,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-public class MyAwesomeGlovalSearchScopesProvider extends PredefinedSearchScopeProviderImpl {
+public class BazelOptionalTestScopeSearchProvider extends PredefinedSearchScopeProviderImpl {
+
 	@Override
 	public List<SearchScope> getPredefinedScopes(@NotNull Project project, @Nullable DataContext dataContext,
 	                                             boolean suggestSearchInLibs, boolean prevSearchFiles,
@@ -32,7 +33,9 @@ public class MyAwesomeGlovalSearchScopesProvider extends PredefinedSearchScopePr
 						.anyMatch(targetIdeInfo -> targetIdeInfo.getKind().getKindString().endsWith("_test"))
 				).orElse(false);
 		if (hasTestTargets) {
-			int index = predefinedScopes.indexOf(GlobalSearchScope.projectScope(project)); // TODO what if index is -1?
+			int index = predefinedScopes.indexOf(GlobalSearchScope.projectScope(project));
+			index = index == -1 ? 2 : index; // just leave both scopes at the top of the list
+
 			predefinedScopes.add(index + 1, GlobalSearchScopesCore.projectProductionScope(project));
 			predefinedScopes.add(index + 2, GlobalSearchScopesCore.projectTestScope(project));
 		}
