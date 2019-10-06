@@ -434,7 +434,6 @@ final class ProjectUpdateSyncTask {
     createProjectDataDirectoryModule(
         moduleEditor, new File(importSettings.getProjectDataDirectory()), workspaceModuleType);
 
-    project.putUserData(Key.create("HAS_TEST_ROOTS"), true);
     moduleEditor.commitWithGc(context);
   }
 
