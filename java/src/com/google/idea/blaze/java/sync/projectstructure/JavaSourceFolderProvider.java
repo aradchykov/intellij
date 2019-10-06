@@ -99,19 +99,7 @@ public class JavaSourceFolderProvider implements SourceFolderProvider {
       sourceFolder =
           contentEntry.addSourceFolder(UrlUtil.pathToUrl(file.getPath()), resourceRootType);
     } else {
-//      File file1 = file.listFiles()[0].listFiles()[0].listFiles()[0];
-
-//      JpsModuleSourceRoot moduleSourceRoot = JpsElementFactory.getInstance().createModuleSourceRoot(UrlUtil.pathToUrl(file.getPath()), JavaSourceRootType.TEST_SOURCE, JavaSourceRootType.TEST_SOURCE.createDefaultProperties());
-//      SourceFolderImpl sourceFolder1 = new SourceFolderImpl(moduleSourceRoot, ((ContentEntryImpl) contentEntry));
-
-//      VirtualFile parent = VirtualFilePointerManager.getInstance().create(UrlUtil.pathToUrl(file.listFiles()[0].listFiles()[0].getPath()), ((ContentEntryImpl) contentEntry), null).getFile();
-//      VirtualFile[] childrens = { VirtualFilePointerManager.getInstance().create(UrlUtil.pathToUrl(file1.getPath()), ((ContentEntryImpl) contentEntry), null).getFile() };
-//      Huy huy = new Huy(parent, childrens);
-//    File a = new File(file.getPath() + "/com/test/test11");
-
-//      sourceFolder = contentEntry.addSourceFolder(huy, isTestSource);
       sourceFolder = contentEntry.addSourceFolder(UrlUtil.pathToUrl(file.getPath()), isTestSource);
-//      sourceFolder = contentEntry.addSourceFolder(UrlUtil.pathToUrl(a.getPath()), isTestSource);
     }
     sourceFolder.setPackagePrefix(derivePackagePrefix(file, parentFolder));
     JpsModuleSourceRoot sourceRoot = sourceFolder.getJpsElement();
@@ -123,91 +111,6 @@ public class JavaSourceFolderProvider implements SourceFolderProvider {
 
   }
 
-  class Huy extends VirtualFile {
-    private final VirtualFile parent;
-    private final VirtualFile[] childrens;
-
-    public Huy(VirtualFile parent, VirtualFile[] childrens) {
-      this.parent = parent;
-      this.childrens = childrens;
-    }
-
-    @NotNull
-    @Override
-    public String getName() {
-      return "test";
-    }
-
-    @NotNull
-    @Override
-    public VirtualFileSystem getFileSystem() {
-      return parent.getFileSystem();
-    }
-
-    @NotNull
-    @Override
-    public String getPath() {
-      return parent.getPath() + "/test";
-//      return parent.getPath();
-    }
-
-    @Override
-    public boolean isWritable() {
-      return true;
-    }
-
-    @Override
-    public boolean isDirectory() {
-      return true;
-    }
-
-    @Override
-    public boolean isValid() {
-      return true;
-    }
-
-    @Override
-    public VirtualFile getParent() {
-      return this.parent;
-    }
-
-    @Override
-    public VirtualFile[] getChildren() {
-      return childrens;
-    }
-
-    @NotNull
-    @Override
-    public OutputStream getOutputStream(Object requestor, long newModificationStamp, long newTimeStamp) throws IOException {
-      return null;
-    }
-
-    @NotNull
-    @Override
-    public byte[] contentsToByteArray() throws IOException {
-      return new byte[0];
-    }
-
-    @Override
-    public long getTimeStamp() {
-      return 0;
-    }
-
-    @Override
-    public long getLength() {
-      return 0;
-    }
-
-    @Override
-    public void refresh(boolean asynchronous, boolean recursive, @org.jetbrains.annotations.Nullable Runnable postRunnable) {
-      System.out.println("as");
-    }
-
-    @Override
-    public InputStream getInputStream() throws IOException {
-      return null;
-    }
-  }
 
   private static String derivePackagePrefix(File file, SourceFolder parentFolder) {
     String parentPackagePrefix = parentFolder.getPackagePrefix();

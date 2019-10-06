@@ -31,11 +31,11 @@ import java.io.File;
 import javax.annotation.Nullable;
 
 /** BUILD-file utility methods used by actions. */
-final public class BuildFileUtils {
+final class BuildFileUtils {
   private BuildFileUtils() {}
 
   @Nullable
-  public static BlazePackage getBuildFile(Project project, @Nullable VirtualFile vf) {
+  static BlazePackage getBuildFile(Project project, @Nullable VirtualFile vf) {
     if (vf == null) {
       return null;
     }
@@ -48,7 +48,7 @@ final public class BuildFileUtils {
   }
 
   @Nullable
-  public static PsiElement findBuildTarget(Project project, BlazePackage parentPackage, File file) {
+  static PsiElement findBuildTarget(Project project, BlazePackage parentPackage, File file) {
     BlazeProjectData blazeProjectData =
         BlazeProjectDataManager.getInstance(project).getBlazeProjectData();
     if (blazeProjectData == null) {
