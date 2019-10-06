@@ -1,4 +1,4 @@
-package com.google.idea.blaze.java.sync.projectstructure;
+package com.google.idea.blaze.base.search;
 
 import com.google.common.collect.ImmutableList;
 import com.google.idea.blaze.base.model.primitives.Label;
