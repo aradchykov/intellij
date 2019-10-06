@@ -1,4 +1,4 @@
-package com.google.idea.blaze.java.sync.projectstructure;
+package com.google.idea.blaze.base.search;
 
 import com.google.idea.blaze.base.model.BlazeProjectData;
 import com.google.idea.blaze.base.sync.data.BlazeProjectDataManager;

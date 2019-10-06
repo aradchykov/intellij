@@ -25,12 +25,4 @@
     <TargetKindProvider implementation="com.google.idea.blaze.java.AndroidBlazeRules"/>
   </extensions>
 
-  <extensions defaultExtensionNs="com.intellij">
-    <testSourcesFilter implementation="com.google.idea.blaze.java.sync.projectstructure.BazelTestSourcesFilter"/>
-
-    <applicationService serviceInterface="com.intellij.psi.search.PredefinedSearchScopeProvider"
-                        serviceImplementation="com.google.idea.blaze.java.sync.projectstructure.BazelOptionalTestScopeSearchProvider"
-                        overrides="true"/>
-
-  </extensions>
 </idea-plugin>
