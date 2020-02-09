@@ -28,11 +28,16 @@ import com.google.idea.blaze.base.model.primitives.Label;
 import com.google.idea.blaze.base.settings.Blaze;
 import com.intellij.codeInsight.documentation.DocumentationManagerProtocol;
 import com.intellij.lang.documentation.AbstractDocumentationProvider;
+import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiManager;
+import org.jetbrains.annotations.NotNull;
+
 import javax.annotation.Nullable;
+import java.awt.*;
+import java.util.List;
 
 /** Provides quick docs for some BUILD elements. */
 public class BuildDocumentationProvider extends AbstractDocumentationProvider {
@@ -64,6 +69,9 @@ public class BuildDocumentationProvider extends AbstractDocumentationProvider {
     RuleDefinition rule = getBuiltInRule(project, ruleName);
     if (rule == null) {
       return null;
+    }
+    if (rule.getDocumentation() != null) {
+      return rule.getDocumentation();
     }
     String link = Blaze.getBuildSystemProvider(project).getRuleDocumentationUrl(rule);
     if (link == null) {
