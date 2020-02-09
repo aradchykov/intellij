@@ -15,6 +15,8 @@
  */
 package com.google.idea.blaze.base.lang.buildfile.documentation;
 
+import com.google.common.collect.ImmutableSet;
+import com.google.idea.blaze.base.lang.buildfile.language.semantics.AttributeDefinition;
 import com.google.idea.blaze.base.lang.buildfile.language.semantics.BuildLanguageSpec;
 import com.google.idea.blaze.base.lang.buildfile.language.semantics.BuildLanguageSpecProvider;
 import com.google.idea.blaze.base.lang.buildfile.language.semantics.RuleDefinition;
@@ -37,15 +39,45 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.awt.*;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 /** Provides quick docs for some BUILD elements. */
 public class BuildDocumentationProvider extends AbstractDocumentationProvider {
 
   private static final String LINK_TYPE_FILE = "#file#";
 
-  @Nullable
-  @Override
+  /**
+   * @param element
+   * @param originalElement asdas op
+   * @param originalElementaa asdas op
+   * @param originalElementsda asdas op
+   * @param originalElement21 asdas op
+   * @param originalElement412 asdas op
+   * @param originalElementa1 asdas op
+   * @param originalElementva asdas op
+   * @return
+   */
+  public String generateDoc(PsiElement element, @Nullable PsiElement originalElement, PsiElement originalElementaa,
+                            PsiElement originalElementsda, PsiElement originalElement21, PsiElement originalElement412,
+                            PsiElement originalElementa1, PsiElement originalElementva) {
+//    generateDoc()
+    return "";
+  }
+
+  /**
+   * Params:
+   *        element –
+   *        originalElement – asdas op
+   *        originalElementaa – asdas op
+   *        originalElementsda – asdas op
+   *        originalElement21 – asdas op
+   *        originalElement412 – asdas op
+   *        originalElementa1 – asdas op
+   *        originalElementva – asdas op
+   */
+
   public String generateDoc(PsiElement element, @Nullable PsiElement originalElement) {
     if (element instanceof DocStringOwner) {
       return buildDocs((DocStringOwner) element);
@@ -71,7 +103,7 @@ public class BuildDocumentationProvider extends AbstractDocumentationProvider {
       return null;
     }
     if (rule.getDocumentation() != null) {
-      return rule.getDocumentation();
+      return formatRuleDocumentation(rule);
     }
     String link = Blaze.getBuildSystemProvider(project).getRuleDocumentationUrl(rule);
     if (link == null) {
@@ -79,6 +111,22 @@ public class BuildDocumentationProvider extends AbstractDocumentationProvider {
     }
     return String.format(
         "External documentation for %s:<br><a href=\"%s\">%s</a>", rule.getName(), link, link);
+  }
+
+  private static String formatRuleDocumentation(RuleDefinition rule) {
+    String params = "Params:";
+    char[] spaces = new char[params.length()];
+    Arrays.fill(spaces, ' ');
+    String space = new String(spaces);
+
+    StringBuilder docBuilder = new StringBuilder("<pre>" + rule.getDocumentation() + "\n")
+            .append("<br><br>").append(params + "<br>");
+
+    for (Map.Entry<String, AttributeDefinition> entry : rule.getAttributes().entrySet()) {
+      docBuilder.append(space + entry.getKey() + " - " + entry.getValue().getDocumentation() + "<br>");
+    }
+
+    return docBuilder.append("</pre>").toString();
   }
 
   private static void describeFile(PsiFile file, StringBuilder builder, boolean linkToFile) {
