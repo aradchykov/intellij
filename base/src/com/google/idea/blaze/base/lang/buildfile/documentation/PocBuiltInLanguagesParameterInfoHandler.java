@@ -15,6 +15,7 @@ import com.intellij.psi.util.PsiTreeUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class PocBuiltInLanguagesParameterInfoHandler implements ParameterInfoHandler<FuncallExpression, PocBuiltInLanguagesParameterInfoHandler.CallInfo> {
@@ -67,20 +68,23 @@ public class PocBuiltInLanguagesParameterInfoHandler implements ParameterInfoHan
 
     @Override
     public void updateParameterInfo(@NotNull FuncallExpression funcallExpression, @NotNull UpdateParameterInfoContext ctx) {
-//        BuildLanguageSpec spec = BuildLanguageSpecProvider.getInstance().getLanguageSpec(ctx.getProject());
-//        RuleDefinition rule = spec.getRule(funcallExpression.getFunctionName());
-//
         System.out.println("TODO");
     }
 
     @Override
     public void updateUI(CallInfo p, @NotNull ParameterInfoUIContext ctx) {
-        String text = p.attrs
+        List<String> attrs = p.attrs
                 .entrySet()
                 .stream()
                 .map(entry -> entry.getKey() + ": " + toParameterDescription(entry.getValue()))
-                .collect(Collectors.joining(", "));
-        ctx.setupUIComponentPresentation(text, 0, 13, false, false, false, ctx.getDefaultParameterColor());
+                .collect(Collectors.toList());
+
+        ctx.setupUIComponentPresentation(attrs.stream().collect(Collectors.joining(", ")), 0,
+                attrs.size() == 0 ? 0 : attrs.get(0).length(),
+                false,
+                false,
+                false,
+                ctx.getDefaultParameterColor());
     }
 
     class CallInfo {

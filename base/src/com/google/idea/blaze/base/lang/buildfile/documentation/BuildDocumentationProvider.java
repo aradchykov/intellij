@@ -48,36 +48,6 @@ public class BuildDocumentationProvider extends AbstractDocumentationProvider {
 
   private static final String LINK_TYPE_FILE = "#file#";
 
-  /**
-   * @param element
-   * @param originalElement asdas op
-   * @param originalElementaa asdas op
-   * @param originalElementsda asdas op
-   * @param originalElement21 asdas op
-   * @param originalElement412 asdas op
-   * @param originalElementa1 asdas op
-   * @param originalElementva asdas op
-   * @return
-   */
-  public String generateDoc(PsiElement element, @Nullable PsiElement originalElement, PsiElement originalElementaa,
-                            PsiElement originalElementsda, PsiElement originalElement21, PsiElement originalElement412,
-                            PsiElement originalElementa1, PsiElement originalElementva) {
-//    generateDoc()
-    return "";
-  }
-
-  /**
-   * Params:
-   *        element –
-   *        originalElement – asdas op
-   *        originalElementaa – asdas op
-   *        originalElementsda – asdas op
-   *        originalElement21 – asdas op
-   *        originalElement412 – asdas op
-   *        originalElementa1 – asdas op
-   *        originalElementva – asdas op
-   */
-
   public String generateDoc(PsiElement element, @Nullable PsiElement originalElement) {
     if (element instanceof DocStringOwner) {
       return buildDocs((DocStringOwner) element);
